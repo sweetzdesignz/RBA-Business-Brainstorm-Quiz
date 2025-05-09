@@ -15,6 +15,10 @@
       border-bottom: 2px solid #000;
       padding-bottom: 0.5rem;
       margin-top: 2rem;
+      border-radius: 8px;
+    }
+    label, textarea, input[type="text"], .checkbox-group label, #results {
+      border-radius: 8px;
     }
     label, textarea, input[type="text"] {
       display: block;
@@ -23,6 +27,7 @@
     }
     textarea, input[type="text"] {
       padding: 0.5rem;
+      border: 1px solid #000;
     }
     .checkbox-group, .checkbox-group label {
       display: flex;
@@ -38,6 +43,7 @@
       margin-top: 2rem;
       cursor: pointer;
       font-size: 1rem;
+      border-radius: 8px;
     }
     #results {
       margin-top: 2rem;
@@ -46,10 +52,17 @@
       border: 1px solid #000;
       display: none;
     }
+    .print-button {
+      display: none;
+      margin-top: 1rem;
+    }
+    #results.show .print-button {
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
-  <h1>💡 Business Brainstorm Quiz</h1>
+  <h1>Business Brainstorm Quiz</h1>
 
   <form id="quizForm">
     <h2>SECTION 1: YOUR BUSINESS VISION</h2>
@@ -68,7 +81,7 @@
     <label>3. What lifestyle do you want your business to support?</label>
     <textarea name="lifestyle" rows="3"></textarea>
 
-    <h2>🎯 SECTION 2: WHO YOU WANT TO HELP (Your Audience)</h2>
+    <h2>SECTION 2: WHO YOU WANT TO HELP (Your Audience)</h2>
     <label>1. Who do you want to serve?</label>
     <textarea name="audience" rows="2"></textarea>
 
@@ -78,7 +91,7 @@
     <label>3. What transformation will they get?</label>
     <textarea name="transformation" rows="2"></textarea>
 
-    <h2>💰 SECTION 3: WHAT YOU CAN SELL</h2>
+    <h2>SECTION 3: WHAT YOU CAN SELL</h2>
     <div class="checkbox-group">
       <label><input type="checkbox" name="sell" value="RBA Academy"> RBA Academy</label>
       <label><input type="checkbox" name="sell" value="Digital Courses from RBA"> Digital Courses from RBA</label>
@@ -93,7 +106,7 @@
     <input type="text" name="product2" placeholder="2.">
     <input type="text" name="product3" placeholder="3.">
 
-    <h2>📲 SECTION 4: YOUR CONTENT + PROMOTION PLAN</h2>
+    <h2>SECTION 4: YOUR CONTENT + PROMOTION PLAN</h2>
     <label>1. Where will you show up online?</label>
     <div class="checkbox-group">
       <label><input type="checkbox" name="platform" value="Instagram"> Instagram</label>
@@ -116,7 +129,7 @@
     <label>First post or content idea:</label>
     <textarea name="firstPost" rows="2"></textarea>
 
-    <h2>✅ SECTION 5: ACTION STEPS</h2>
+    <h2>SECTION 5: ACTION STEPS</h2>
     <label>Pick 3 action steps:</label>
     <input type="text" name="step1" placeholder="1.">
     <input type="text" name="step2" placeholder="2.">
@@ -131,18 +144,22 @@
     <button type="submit">Show My Brainstorm Summary</button>
   </form>
 
-  <div id="results"></div>
+  <div id="results">
+    <button class="print-button" onclick="window.print()">Print My Results</button>
+  </div>
 
   <script>
     document.getElementById('quizForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const form = new FormData(e.target);
-      let result = '<h2>📝 Your Business Brainstorm Summary</h2>';
+      let result = '<h2>Your Business Brainstorm Summary</h2>';
       form.forEach((value, key) => {
         result += `<p><strong>${key}:</strong> ${value}</p>`;
       });
-      document.getElementById('results').innerHTML = result;
-      document.getElementById('results').style.display = 'block';
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = result + resultsDiv.innerHTML;
+      resultsDiv.classList.add('show');
+      resultsDiv.style.display = 'block';
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     });
   </script>
