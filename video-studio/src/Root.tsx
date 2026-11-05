@@ -7,7 +7,7 @@ const defaults: Video3DProps = {
   captionsFile: "captions/demo.json",
   voiceoverFile: "",
   musicFile: "audio/demo-music.mp3",
-  musicVolume: 0.6,
+  musicVolume: 1,
   background: "#0b0614",
   primary: "#ff2d95",
   secondary: "#8b5cf6",
