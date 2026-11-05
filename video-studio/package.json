@@ -1,0 +1,47 @@
+{
+  "name": "video-studio",
+  "version": "1.0.0",
+  "description": "3D animated videos with Three.js + Remotion",
+  "repository": {},
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "^20.19.0 || ^22.13.0 || >=24"
+  },
+  "private": true,
+  "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "@remotion/captions": "4.0.541",
+    "@remotion/cli": "4.0.541",
+    "@remotion/install-whisper-cpp": "4.0.541",
+    "@remotion/media": "4.0.541",
+    "@remotion/three": "4.0.541",
+    "@remotion/zod-types": "4.0.541",
+    "@types/three": "^0.187.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.541",
+    "three": "^0.187.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.541",
+    "@types/react": "19.3.0",
+    "@types/web": "0.0.166",
+    "eslint": "10.12.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc",
+    "render:vertical": "remotion render Video3D-Vertical out/video-vertical.mp4",
+    "render:wide": "remotion render Video3D-Wide out/video-wide.mp4",
+    "captions": "node scripts/transcribe.mjs"
+  },
+  "allowScripts": {
+    "esbuild": false
+  }
+}
