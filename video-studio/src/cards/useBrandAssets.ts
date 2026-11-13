@@ -2,25 +2,34 @@ import { useEffect, useState } from "react";
 import { staticFile, useDelayRender } from "remotion";
 import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 
-// Loads the 3D font (for Three.js text) and the web font (for normal text).
-// Rendering waits until both are ready, so no frame shows missing text.
-export const useBrandAssets = () => {
+const WEB_FONTS: { family: string; file: string; weight: string; style?: string }[] = [
+  { family: "Montserrat", file: "fonts/Montserrat-Black.woff", weight: "900" },
+  { family: "Montserrat", file: "fonts/Montserrat-SemiBold.woff", weight: "600" },
+  { family: "Playfair Display", file: "fonts/PlayfairDisplay-Bold.woff", weight: "700" },
+  { family: "Playfair Display", file: "fonts/PlayfairDisplay-Italic.woff", weight: "400", style: "italic" },
+];
+
+// Loads the web fonts (flat text) and the theme's 3D font (Three.js text).
+// Rendering waits until all are ready, so no frame shows missing text.
+export const useBrandAssets = (font3dPath: string) => {
   const [font3d, setFont3d] = useState<Font | null>(null);
   const { delayRender, continueRender, cancelRender } = useDelayRender();
-  const [handle] = useState(() => delayRender("Loading brand fonts"));
+  const [handle] = useState(() => delayRender("Loading fonts"));
 
   useEffect(() => {
     const load = async () => {
       try {
-        const face = new FontFace(
-          "Montserrat",
-          `url(${staticFile("fonts/Montserrat-Black.woff")})`,
-          { weight: "900" },
+        await Promise.all(
+          WEB_FONTS.map(async (f) => {
+            const face = new FontFace(f.family, `url(${staticFile(f.file)})`, {
+              weight: f.weight,
+              style: f.style ?? "normal",
+            });
+            await face.load();
+            document.fonts.add(face);
+          }),
         );
-        await face.load();
-        document.fonts.add(face);
-
-        const res = await fetch(staticFile("fonts/Montserrat-Black.typeface.json"));
+        const res = await fetch(staticFile(font3dPath));
         setFont3d(new FontLoader().parse(await res.json()));
         continueRender(handle);
       } catch (e) {
@@ -28,7 +37,7 @@ export const useBrandAssets = () => {
       }
     };
     load();
-  }, [handle, continueRender, cancelRender]);
+  }, [handle, continueRender, cancelRender, font3dPath]);
 
   return font3d;
 };

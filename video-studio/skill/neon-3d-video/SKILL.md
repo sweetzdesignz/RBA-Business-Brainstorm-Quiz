@@ -1,6 +1,6 @@
 ---
 name: neon-3d-video
-description: Make 3D animated videos in a neon 3D style with Three.js + Remotion — 3D tutorial intro/outro cards (camera flies through glowing neon rings, glossy 3D icon spins in, chunky 3D letters pop up one by one, title pill slides in; outro with 3D "THANKS FOR WATCHING", beating icon with orbiting mini icons, bouncing call-to-action buttons) and 3D promo videos with word-by-word captions, voiceover and music. Works for ANY brand: logo word, colors, buttons and watermark are settings. Use for "3D intro", "3D outro", "3D logo reveal", "neon 3D video", or rendering these to MP4.
+description: Make 3D animated videos in a neon or luxe (black, plum and metallic gold) 3D style with Three.js + Remotion — 3D tutorial intro/outro cards (camera flies through glowing neon rings, glossy 3D icon spins in, chunky 3D letters pop up one by one, title pill slides in; outro with 3D "THANKS FOR WATCHING", beating icon with orbiting mini icons, bouncing call-to-action buttons) and 3D promo videos with word-by-word captions, voiceover and music. Works for ANY brand: logo word, colors, buttons and watermark are settings. Use for "3D intro", "3D outro", "3D logo reveal", "neon 3D video", or rendering these to MP4.
 ---
 
 # Neon 3D Video Style (Three.js + Remotion)
@@ -21,6 +21,19 @@ Nothing is tied to one brand. For each video, ask (or use what the user gave you
 - **Buttons** (`ctas`), **next up** text, **watermark** (empty = none).
 - **Font** — default Montserrat Black. For another font: put the file in `public/fonts/`,
   run `npm run font3d -- public/fonts/Font.ttf`, and point `src/cards/useBrandAssets.ts` at it.
+
+## Themes
+
+Set the `theme` prop on the intro or outro.
+- `neon`: bright pink and purple neon, Montserrat Black 3D letters, a heart icon, and the icon
+  next to the logo (`layout: "side"`).
+- `luxe`: black and deep plum background with a gold-brown glow, metallic gold Playfair
+  Display serif 3D letters, a magenta cut gem, thin gold bars at top and bottom, a gold
+  outlined pill label, a gold divider with a magenta diamond, an italic pink subtitle, and
+  letter-spaced gold corner text. Uses `layout: "stacked"` (icon on top). The ready-made
+  compositions are `Luxe-Intro` and `Luxe-Outro`.
+
+To add a new look, copy a theme in `src/cards/brand.ts`.
 
 Never add a specific person's or company's name, logo or watermark unless the user asks for it.
 
@@ -47,6 +60,17 @@ Key files: `src/Root.tsx` (default text, sizes, lengths; 30 frames = 1 second),
 `src/cards/TutorialIntro.tsx`, `src/cards/TutorialOutro.tsx`, `src/cards/Pieces3D.tsx`
 (`Heart`, `Text3D`, `measureText3D`, `RingTunnel`, `Sparkles`), `src/cards/brand.ts`,
 `src/cards/Backdrop.tsx`, `src/Video3D.tsx`, `src/captions/Captions.tsx`.
+
+## Upgrading an existing video (keep it in sync with the audio)
+
+To replace a flat title card or end card with a 3D one, never change the video's timing.
+1. Find where each card starts and ends. Check frame brightness with ffmpeg `signalstats`, or
+   look at a contact sheet.
+2. Set `durationInSeconds` to the exact length of the card it replaces, and copy its text
+   (label, title, subtitle, corner text).
+3. Render. Then join: 3D intro + original video trimmed between the cards + 3D outro. Keep the
+   ORIGINAL audio track untouched (`-map` the original audio), so the total length and the
+   narration timing stay the same.
 
 ## Common jobs
 
