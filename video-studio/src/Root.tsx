@@ -41,14 +41,17 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
       />
-      {/* 3D intro card for HyperFrames tutorials (5 seconds) */}
+      {/* 3D intro card for tutorials (5 seconds) */}
       <Composition
         id="Tutorial-Intro"
         component={TutorialIntro}
         schema={tutorialIntroSchema}
         defaultProps={{
-          label: "HYPERFRAMES TUTORIAL",
-          title: "Animated Captions in 5 Minutes",
+          logoText: "YOUR BRAND",
+          showHeart: true,
+          label: "TUTORIAL",
+          title: "Your Episode Title Here",
+          watermark: "",
         }}
         durationInFrames={150}
         fps={30}
@@ -62,8 +65,9 @@ export const RemotionRoot: React.FC = () => {
         schema={tutorialOutroSchema}
         defaultProps={{
           headline: "THANKS FOR WATCHING",
-          ctas: ["👍 LIKE", "🔔 SUBSCRIBE", "💗 JOIN SDHQ"],
-          nextUp: "3D Logo Reveals with Three.js",
+          ctas: ["👍 LIKE", "🔔 SUBSCRIBE", "⭐ JOIN NOW"],
+          nextUp: "Your Next Episode",
+          watermark: "",
         }}
         durationInFrames={180}
         fps={30}

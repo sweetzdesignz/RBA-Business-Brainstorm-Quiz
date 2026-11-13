@@ -18,6 +18,7 @@ export const tutorialOutroSchema = z.object({
   headline: z.string(),
   ctas: z.array(z.string()),
   nextUp: z.string(),
+  watermark: z.string().describe("Corner text (leave empty for none)"),
 });
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -60,6 +61,7 @@ export const TutorialOutro: React.FC<z.infer<typeof tutorialOutroSchema>> = ({
   headline,
   ctas,
   nextUp,
+  watermark,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height, durationInFrames } = useVideoConfig();
@@ -139,7 +141,7 @@ export const TutorialOutro: React.FC<z.infer<typeof tutorialOutroSchema>> = ({
           {nextUp}
         </div>
       </AbsoluteFill>
-      <Watermark />
+      <Watermark text={watermark} />
     </AbsoluteFill>
   );
 };

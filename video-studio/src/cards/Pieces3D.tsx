@@ -47,6 +47,13 @@ export const Heart: React.FC<{
   );
 };
 
+// Width of a line of 3D text, so layouts can center it and leave room for an icon.
+export const measureText3D = (font: Font, text: string, size: number) =>
+  text.split("").reduce((w, ch) => {
+    const glyph = font.data.glyphs[ch];
+    return w + (glyph ? (glyph.ha / font.data.resolution) * size : size * 0.4);
+  }, 0);
+
 // ---------- 3D text, letters pop in one by one ----------
 export const Text3D: React.FC<{
   font: Font;

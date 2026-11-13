@@ -41,12 +41,12 @@ Already have an ElevenLabs voiceover? Same steps — just drop the MP3 in `publi
 
 ## 3D tutorial intro & outro cards
 
-- **Tutorial-Intro** (5s): camera flies through neon rings, a 3D 💗 heart spins in, and 3D
-  "SWEETZ" letters pop up one by one, followed by the episode label and title.
+- **Tutorial-Intro** (5s): camera flies through neon rings, a 3D heart spins in, and your
+  logo word pops up in 3D letters, followed by the episode label and title.
 - **Tutorial-Outro** (6s): 3D "THANKS FOR WATCHING", a beating heart with orbiting hearts,
   call-to-action buttons and a "Next up" line.
 
-Change the title, buttons and "next up" text in Studio's right-hand panel. Brand colors
+Change the logo word, title, buttons, "next up" text and watermark in Studio's right-hand panel. Brand colors
 are in `src/cards/brand.ts`. Put the rendered MP4s before and after your HyperFrames
 tutorial in your final edit.
 

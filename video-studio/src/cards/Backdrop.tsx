@@ -1,7 +1,7 @@
 import { AbsoluteFill } from "remotion";
 import { BRAND } from "./brand";
 
-// Neon stage backdrop + 💗SWEETZ watermark, shared by intro and outro.
+// Neon stage backdrop + optional corner watermark, shared by intro and outro.
 export const Backdrop: React.FC = () => (
   <AbsoluteFill
     style={{
@@ -10,7 +10,11 @@ export const Backdrop: React.FC = () => (
   />
 );
 
-export const Watermark: React.FC<{ opacity?: number }> = ({ opacity = 0.85 }) => (
+export const Watermark: React.FC<{ text: string; opacity?: number }> = ({
+  text,
+  opacity = 0.85,
+}) =>
+  text ? (
   <AbsoluteFill
     style={{ justifyContent: "flex-end", alignItems: "flex-end", padding: 48, opacity }}
   >
@@ -24,7 +28,7 @@ export const Watermark: React.FC<{ opacity?: number }> = ({ opacity = 0.85 }) =>
         textShadow: `0 0 18px ${BRAND.pink}`,
       }}
     >
-      💗SWEETZ
+      {text}
     </div>
   </AbsoluteFill>
-);
+  ) : null;

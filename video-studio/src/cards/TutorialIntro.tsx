@@ -12,12 +12,15 @@ import {
 import { z } from "zod";
 import { Backdrop, Watermark } from "./Backdrop";
 import { BRAND } from "./brand";
-import { Heart, RingTunnel, Sparkles, Text3D } from "./Pieces3D";
+import { Heart, measureText3D, RingTunnel, Sparkles, Text3D } from "./Pieces3D";
 import { useBrandAssets } from "./useBrandAssets";
 
 export const tutorialIntroSchema = z.object({
+  logoText: z.string().describe("Big 3D word, e.g. your brand or show name"),
+  showHeart: z.boolean().describe("3D heart icon next to the logo word"),
   label: z.string(),
   title: z.string(),
+  watermark: z.string().describe("Corner text (leave empty for none)"),
 });
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -46,8 +49,11 @@ const IntroCamera: React.FC = () => {
 };
 
 export const TutorialIntro: React.FC<z.infer<typeof tutorialIntroSchema>> = ({
+  logoText,
+  showHeart,
   label,
   title,
+  watermark,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height, durationInFrames } = useVideoConfig();
@@ -73,12 +79,22 @@ export const TutorialIntro: React.FC<z.infer<typeof tutorialIntroSchema>> = ({
           <RingTunnel count={12} spacing={4} />
         </group>
         <Sparkles />
-        <group position={[-0.3, 1.1, 0]}>
-          <Heart position={[-4.5, 0.05, 0]} scale={heartIn * 0.95} rotationY={heartSpin} />
-          {font3d ? (
-            <Text3D font={font3d} text="SWEETZ" size={1.2} startFrame={38} position={[1.0, 0, 0]} />
-          ) : null}
-        </group>
+        {font3d ? (() => {
+          // Shrink long words so the logo always fits on screen.
+          const maxW = showHeart ? 8.5 : 10;
+          const size = Math.min(1.2, maxW / Math.max(measureText3D(font3d, logoText, 1), 0.01));
+          const textW = measureText3D(font3d, logoText, size);
+          const heartW = showHeart ? 2.8 : 0;
+          const left = -(textW + heartW) / 2;
+          return (
+            <group position={[0, 1.1, 0]}>
+              {showHeart ? (
+                <Heart position={[left + 0.9, 0.05, 0]} scale={heartIn * 0.95} rotationY={heartSpin} />
+              ) : null}
+              <Text3D font={font3d} text={logoText} size={size} startFrame={showHeart ? 38 : 20} position={[left + heartW + textW / 2, 0, 0]} />
+            </group>
+          );
+        })() : null}
       </ThreeCanvas>
 
       {/* Light sweep across the logo */}
@@ -131,7 +147,7 @@ export const TutorialIntro: React.FC<z.infer<typeof tutorialIntroSchema>> = ({
           {title}
         </div>
       </AbsoluteFill>
-      <Watermark opacity={interpolate(frame, [60, 80], [0, 0.85], clamp)} />
+      <Watermark text={watermark} opacity={interpolate(frame, [60, 80], [0, 0.85], clamp)} />
     </AbsoluteFill>
   );
 };

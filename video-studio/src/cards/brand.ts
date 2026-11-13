@@ -1,4 +1,4 @@
-// Sweetz brand look for the 3D tutorial cards. Change colors here.
+// Neon style colors for the 3D cards. Swap these to match any brand.
 export const BRAND = {
   bgDeep: "#0a0412",
   bgGlow: "#3b0a4f",
