@@ -19,6 +19,8 @@ npm install
 | Preview + edit live in the browser | `npm run dev` (opens Remotion Studio at http://localhost:3000) |
 | Render vertical (Reels/TikTok/Shorts, 1080×1920) | `npm run render:vertical` → `out/video-vertical.mp4` |
 | Render wide (YouTube, 1920×1080) | `npm run render:wide` → `out/video-wide.mp4` |
+| Render tutorial intro card | `npx remotion render Tutorial-Intro out/intro.mp4` |
+| Render tutorial outro card | `npx remotion render Tutorial-Outro out/outro.mp4` |
 | Make captions from a voiceover | `npm run captions -- public/audio/voiceover.mp3` |
 
 In Studio, the right-hand panel lets you change the title, colors, caption file,
@@ -37,6 +39,20 @@ music and voiceover without touching code.
 
 Already have an ElevenLabs voiceover? Same steps — just drop the MP3 in `public/audio/`.
 
+## 3D tutorial intro & outro cards
+
+- **Tutorial-Intro** (5s): camera flies through neon rings, a 3D 💗 heart spins in, and 3D
+  "SWEETZ" letters pop up one by one, followed by the episode label and title.
+- **Tutorial-Outro** (6s): 3D "THANKS FOR WATCHING", a beating heart with orbiting hearts,
+  call-to-action buttons and a "Next up" line.
+
+Change the title, buttons and "next up" text in Studio's right-hand panel. Brand colors
+are in `src/cards/brand.ts`. Put the rendered MP4s before and after your HyperFrames
+tutorial in your final edit.
+
+**Using your own font for 3D text:** put the font file in `public/fonts/`, then run
+`npm run font3d -- public/fonts/YourFont.ttf`.
+
 ## Where things live
 
 ```
@@ -46,7 +62,10 @@ src/scene/Scene3D.tsx    The Three.js scene (camera, lights, objects)
 src/captions/Captions.tsx  TikTok-style word-highlight captions
 public/audio/            Music + voiceovers (demo-music.mp3 is a placeholder)
 public/captions/         Caption JSON files (demo.json is hand-timed sample)
+src/cards/                3D tutorial intro/outro cards
+public/fonts/            Montserrat Black (web font + 3D version)
 scripts/transcribe.mjs   Voiceover → captions (Whisper)
+scripts/make-3d-font.mjs Font file → 3D text font
 ```
 
 ## 3D rules (so renders don't flicker)

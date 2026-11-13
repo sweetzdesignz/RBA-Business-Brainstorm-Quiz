@@ -1,6 +1,6 @@
 import { useThree } from "@react-three/fiber";
 import { ThreeCanvas } from "@remotion/three";
-import { useEffect, useMemo } from "react";
+import { useLayoutEffect, useMemo } from "react";
 import * as THREE from "three";
 import {
   interpolate,
@@ -33,7 +33,7 @@ const CameraRig: React.FC = () => {
   const distance = interpolate(progress, [0, 1], [9, 6.5]) * zoomOut;
   const height = interpolate(progress, [0, 1], [2.5, 1]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     camera.position.set(
       Math.sin(angle) * distance,
       height,

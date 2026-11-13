@@ -29,6 +29,7 @@
     "@types/react": "19.3.0",
     "@types/web": "0.0.166",
     "eslint": "10.12.0",
+    "opentype.js": "^1.3.4",
     "prettier": "3.8.1",
     "typescript": "5.9.3"
   },
@@ -39,7 +40,8 @@
     "lint": "eslint src && tsc",
     "render:vertical": "remotion render Video3D-Vertical out/video-vertical.mp4",
     "render:wide": "remotion render Video3D-Wide out/video-wide.mp4",
-    "captions": "node scripts/transcribe.mjs"
+    "captions": "node scripts/transcribe.mjs",
+    "font3d": "node scripts/make-3d-font.mjs"
   },
   "allowScripts": {
     "esbuild": false

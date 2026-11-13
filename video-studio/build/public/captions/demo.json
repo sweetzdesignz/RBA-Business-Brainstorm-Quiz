@@ -1,0 +1,135 @@
+[
+  {
+    "text": "Ready",
+    "startMs": 1500,
+    "endMs": 1905,
+    "timestampMs": 1702.5,
+    "confidence": 1
+  },
+  {
+    "text": " to",
+    "startMs": 1945,
+    "endMs": 2275,
+    "timestampMs": 2110,
+    "confidence": 1
+  },
+  {
+    "text": " turn",
+    "startMs": 2315,
+    "endMs": 2695,
+    "timestampMs": 2505,
+    "confidence": 1
+  },
+  {
+    "text": " your",
+    "startMs": 2735,
+    "endMs": 3115,
+    "timestampMs": 2925,
+    "confidence": 1
+  },
+  {
+    "text": " idea",
+    "startMs": 3155,
+    "endMs": 3535,
+    "timestampMs": 3345,
+    "confidence": 1
+  },
+  {
+    "text": " into",
+    "startMs": 3575,
+    "endMs": 3955,
+    "timestampMs": 3765,
+    "confidence": 1
+  },
+  {
+    "text": " a",
+    "startMs": 3995,
+    "endMs": 4300,
+    "timestampMs": 4147.5,
+    "confidence": 1
+  },
+  {
+    "text": " real",
+    "startMs": 4340,
+    "endMs": 4720,
+    "timestampMs": 4530,
+    "confidence": 1
+  },
+  {
+    "text": " business?",
+    "startMs": 4760,
+    "endMs": 5265,
+    "timestampMs": 5012.5,
+    "confidence": 1
+  },
+  {
+    "text": " Take",
+    "startMs": 5305,
+    "endMs": 5685,
+    "timestampMs": 5495,
+    "confidence": 1
+  },
+  {
+    "text": " the",
+    "startMs": 5725,
+    "endMs": 6080,
+    "timestampMs": 5902.5,
+    "confidence": 1
+  },
+  {
+    "text": " quiz,",
+    "startMs": 6120,
+    "endMs": 6525,
+    "timestampMs": 6322.5,
+    "confidence": 1
+  },
+  {
+    "text": " find",
+    "startMs": 6565,
+    "endMs": 6945,
+    "timestampMs": 6755,
+    "confidence": 1
+  },
+  {
+    "text": " your",
+    "startMs": 6985,
+    "endMs": 7365,
+    "timestampMs": 7175,
+    "confidence": 1
+  },
+  {
+    "text": " path,",
+    "startMs": 7405,
+    "endMs": 7810,
+    "timestampMs": 7607.5,
+    "confidence": 1
+  },
+  {
+    "text": " and",
+    "startMs": 7850,
+    "endMs": 8205,
+    "timestampMs": 8027.5,
+    "confidence": 1
+  },
+  {
+    "text": " launch",
+    "startMs": 8245,
+    "endMs": 8675,
+    "timestampMs": 8460,
+    "confidence": 1
+  },
+  {
+    "text": " with",
+    "startMs": 8715,
+    "endMs": 9095,
+    "timestampMs": 8905,
+    "confidence": 1
+  },
+  {
+    "text": " confidence.",
+    "startMs": 9135,
+    "endMs": 9690,
+    "timestampMs": 9412.5,
+    "confidence": 1
+  }
+]
